@@ -27,6 +27,7 @@ export default class extends React.Component<IndexPageProps, {}> {
         </p>
         <p>Now go build something great.</p>
         <Link to="/page-2/">Go to page 2</Link>
+        <Link to="/notice/2018/06/17/시작/">시작</Link>
       </div>
     )
   }
