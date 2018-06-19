@@ -26,7 +26,7 @@ const Header = () => (
             textDecoration: 'none',
           }}
         >
-          Gatsby
+          Jell의 세상 사는 이야기.
         </Link>
       </h1>
     </div>
