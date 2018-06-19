@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-typescript",
-  "description": "Gatsby TypeScript starter",
-  "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "jell_blog",
+  "description": "Jell의 세상 사는 이야기.",
+  "version": "0.1.0",
+  "author": "Jell <jellive7@gmail.com>",
   "dependencies": {
     "@types/node": "^8.0.7",
     "@types/react": "15.0.21",
