@@ -1,6 +1,16 @@
 import * as React from "react";
 
-export default ({ data }: any) => (
+interface Props {
+  data: {
+    site: {
+      siteMetadata: {
+        title: string
+      }
+    }
+  }
+}
+
+export default ({ data }: Props) => (
   <div>
     <h1>About {data.site.siteMetadata.title}</h1>
     <p>
