@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default ({ data }) => (
+export default ({ data }: any) => (
   <div>
     <h1>About {data.site.siteMetadata.title}</h1>
     <p>
