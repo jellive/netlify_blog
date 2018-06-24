@@ -12,15 +12,15 @@ interface Props {
 
 export default ({ data }: Props) => (
   <div>
-    <h1>About {data.site.siteMetadata.title}</h1>
+    <h1>About {JSON.stringify(data)}</h1><br />
+    <h2>{data.site.siteMetadata.title}</h2>
     <p>
-      We're the only site running on your computer dedicated to showing the best
-      photos and videos of pandas eating lots of food.
+      이것 저것 합니다.
     </p>
   </div>
 );
 
-export const query = graphql`
+export const aboutQuery = graphql`
   query AboutQuery {
     site {
       siteMetadata {
