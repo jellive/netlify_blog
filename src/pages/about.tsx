@@ -12,8 +12,8 @@ interface Props {
 
 export default ({ data }: Props) => (
   <div>
-    <h1>About {JSON.stringify(data)}</h1><br />
-    <h2>{data.site.siteMetadata.title}</h2>
+    {/* <h1>About {JSON.stringify(data)}</h1><br /> */}
+    <h1>{data.site.siteMetadata.title}</h1>
     <p>
       이것 저것 합니다.
     </p>
