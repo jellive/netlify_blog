@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { AppBar, Toolbar, IconButton, Typography, Drawer, MenuItem } from '@material-ui/core'
-import { Menu as MenuIcon } from '@material-ui/icons'
+import { AppBar, Toolbar, IconButton, Typography, Drawer, MenuItem, Divider } from '@material-ui/core'
+import { Menu as MenuIcon, Cast, Speaker, Computer, DirectionsBike, Gamepad, Storage } from '@material-ui/icons'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 
@@ -44,7 +44,13 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, State> {
         >
           <div style={{ width: 200 }}>
             <Link to="/"><MenuItem>홈</MenuItem></Link>
-            <Link to="/about"><MenuItem>About</MenuItem></Link>
+            <Link to="/notice"><MenuItem><Cast/>&nbsp;&nbsp;블로그 공지사항</MenuItem></Link>
+            <Link to="/chat"><MenuItem><Speaker/>&nbsp;&nbsp;잡담</MenuItem></Link>
+            <Link to="/it"><MenuItem><Computer/>&nbsp;&nbsp;IT</MenuItem></Link>
+            <Link to="/bicycle"><MenuItem><DirectionsBike/>&nbsp;&nbsp;자전거</MenuItem></Link>
+            <Link to="/game"><MenuItem><Gamepad/>&nbsp;&nbsp;게임</MenuItem></Link>
+            <Divider/>
+            <a href="https://www.github.com/jellive" target="_blank"><MenuItem><Storage/>&nbsp;&nbsp;Github</MenuItem></a>
           </div>
         </Drawer>
         <div
