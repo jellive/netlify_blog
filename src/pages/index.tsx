@@ -5,18 +5,6 @@ import Link from 'gatsby-link'
 // to generate all types from graphQL schema
 interface IndexPageProps {
   data: {
-    // allFile: {
-    //   totalCount: number
-    //   edges: {
-    //     node: {
-    //       id: string
-    //       relativePath: string,
-    //       prettySize: string,
-    //       extension: string,
-    //       birthTime: string
-    //     }
-    //   }[]
-    // }
     site: {
       siteMetadata: {
         title: string
@@ -77,7 +65,9 @@ export default class extends React.Component<IndexPageProps, {}> {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark {
+    allMarkdownRemark (
+      sort: {fields: [frontmatter___date], order: ASC}
+    ) {
       edges {
         node {
           frontmatter {
