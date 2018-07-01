@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 const post = ({ data }: any) => {
-  console.log(window.location.href);
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   return (
