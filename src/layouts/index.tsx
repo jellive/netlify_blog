@@ -51,7 +51,7 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, State> {
             <Link to="/bicycle"><MenuItem><DirectionsBike/>&nbsp;&nbsp;자전거</MenuItem></Link>
             <Link to="/game"><MenuItem><Gamepad/>&nbsp;&nbsp;게임</MenuItem></Link>
             <Divider/>
-            <a href="https://www.github.com/jellive" target="_blank"><MenuItem><Storage/>&nbsp;&nbsp;Github</MenuItem></a>
+            <a href="https://github.com/jellive/netlify_blog" target="_blank"><MenuItem><Storage/>&nbsp;&nbsp;Github</MenuItem></a>
           </div>
         </Drawer>
         <div

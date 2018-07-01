@@ -48,7 +48,7 @@ export default class extends React.Component<IndexPageProps, {}> {
   public render() {
     return (
       <div>
-        <h1>안녕하세요?</h1>
+        <h1>이것 저것 해보는 블로그입니다.</h1>
         <p>
           Welcome to your new{' '}
           <strong>{this.props.data.site.siteMetadata.title}</strong> site.
