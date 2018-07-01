@@ -47,21 +47,20 @@ export default class extends React.Component<IndexPageProps, {}> {
           {/* {this.props.data.allFile.totalCount}개가 있습니다.<br /> */}
           {
             this.props.data.allMarkdownRemark.edges.map((edge) => (
-              <>
-              <Card key={edge.node.frontmatter.title} style={{ padding: 15 }}>
-                <Link to={edge.node.fields.slug}>
-                  <CardContent>
-                    <h3 style={{ marginBottom: 50 }}>
-                      {edge.node.frontmatter.title}{" "}
-                      <span style={{ color: '#bbb' }}>
-                        {edge.node.frontmatter.date}
-                      </span>
-                    </h3><br />
-                  </CardContent>
-                </Link>
-              </Card>
-              <Divider/>
-              </>
+              <div style={{ padding: 15 }}>
+                <Card key={edge.node.frontmatter.title}>
+                  <Link to={edge.node.fields.slug}>
+                    <CardContent>
+                      <h3 style={{ marginBottom: 50 }}>
+                        {edge.node.frontmatter.title}{" "}
+                        <span style={{ color: '#bbb' }}>
+                          {edge.node.frontmatter.date}
+                        </span>
+                      </h3><br />
+                    </CardContent>
+                  </Link>
+                </Card>
+              </div>
             ))
           }
         </CardContent>
