@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
+import { Card, CardContent, Divider } from '@material-ui/core';
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema
@@ -35,30 +36,39 @@ export default class extends React.Component<IndexPageProps, {}> {
   }
   public render() {
     return (
-      <div>
-        <h1>이것 저것 해보는 블로그입니다.</h1>
-        <p>
-          Welcome to your new{' '}
-          <strong>{this.props.data.site.siteMetadata.title}</strong> site.
+      <Card>
+        <CardContent>
+          <h1>이것 저것 해보는 블로그입니다.</h1>
+          <p>
+            Welcome to your new{' '}
+            <strong>{this.props.data.site.siteMetadata.title}</strong> site.
         </p>
-        <p>Now go build something great.</p>
-        {/* {this.props.data.allFile.totalCount}개가 있습니다.<br /> */}
-        {
-          this.props.data.allMarkdownRemark.edges.map((edge) => (
-            <div key={edge.node.frontmatter.title} style={{borderStyle: 'dotted'}}>
-              <h3 style={{ marginBottom: 50 }}>
-                <Link to={edge.node.fields.slug}>{edge.node.frontmatter.title}{" "}</Link>
-                <span style={{ color: '#bbb' }}>
-                  {edge.node.frontmatter.date}
-                </span>
-              </h3><br/>
-            </div>
-          ))
-        }
+          <p>Now go build something great.</p>
+          {/* {this.props.data.allFile.totalCount}개가 있습니다.<br /> */}
+          {
+            this.props.data.allMarkdownRemark.edges.map((edge) => (
+              <>
+              <Card key={edge.node.frontmatter.title} style={{ padding: 15 }}>
+                <Link to={edge.node.fields.slug}>
+                  <CardContent>
+                    <h3 style={{ marginBottom: 50 }}>
+                      {edge.node.frontmatter.title}{" "}
+                      <span style={{ color: '#bbb' }}>
+                        {edge.node.frontmatter.date}
+                      </span>
+                    </h3><br />
+                  </CardContent>
+                </Link>
+              </Card>
+              <Divider/>
+              </>
+            ))
+          }
+        </CardContent>
         {/* <Link to="/notice/2018/06/19/일단_급한_일/">일단 급한 일</Link><br />
         <Link to="/notice/2018/06/17/시작/">시작</Link><br />
         <Link to="/page-2/">Go to page 2</Link><br /> */}
-      </div>
+      </Card>
     )
   }
 }
@@ -66,7 +76,7 @@ export default class extends React.Component<IndexPageProps, {}> {
 export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark (
-      sort: {fields: [frontmatter___date], order: ASC}
+      sort: {fields: [frontmatter___date], order: DESC}
     ) {
       edges {
         node {

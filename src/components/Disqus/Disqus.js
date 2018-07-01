@@ -33,7 +33,7 @@ export default class Disqus extends React.Component {
     // for (let i in Disqus.propTypes) {
     //   delete props[i]
     // }
-    return (<div id="disqus_thread" {...props}></div>)
+    return (<div id="disqus_thread" {...props}/>)
   }
 }
 
