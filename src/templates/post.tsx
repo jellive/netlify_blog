@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 const post = ({ data }: any) => {
+  console.log(window.location.href);
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   return (
@@ -17,14 +18,13 @@ const post = ({ data }: any) => {
 export default post
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
-        title
-      }
+query BlogPostQuery($slug: String!) {
+  markdownRemark(fields: { slug: { eq: $slug } }) {
+    html
+    frontmatter {
+      title
     }
   }
+}
 `;
+

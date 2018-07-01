@@ -3,10 +3,10 @@ import { AppBar, Toolbar, IconButton, Typography, Drawer, MenuItem, Divider } fr
 import { Menu as MenuIcon, Cast, Speaker, Computer, DirectionsBike, Gamepad, Storage } from '@material-ui/icons'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import { graphql } from 'react-apollo'
 
 import './index.css'
 import Header from './Header';
-
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
@@ -28,6 +28,7 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, State> {
   }
 
   public render() {
+    console.log(this.props.children());
     return (
       <div>
         <Helmet
