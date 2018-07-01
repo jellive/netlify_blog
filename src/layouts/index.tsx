@@ -7,6 +7,7 @@ import { graphql } from 'react-apollo'
 
 import './index.css'
 import Header from './Header';
+import Footer from './Footer';
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
@@ -45,13 +46,13 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, State> {
         >
           <div style={{ width: 200 }}>
             <Link to="/"><MenuItem>홈</MenuItem></Link>
-            <Link to="/notice"><MenuItem><Cast/>&nbsp;&nbsp;블로그 공지사항</MenuItem></Link>
-            <Link to="/chat"><MenuItem><Speaker/>&nbsp;&nbsp;잡담</MenuItem></Link>
-            <Link to="/it"><MenuItem><Computer/>&nbsp;&nbsp;IT</MenuItem></Link>
-            <Link to="/bicycle"><MenuItem><DirectionsBike/>&nbsp;&nbsp;자전거</MenuItem></Link>
-            <Link to="/game"><MenuItem><Gamepad/>&nbsp;&nbsp;게임</MenuItem></Link>
-            <Divider/>
-            <a href="https://github.com/jellive/netlify_blog" target="_blank"><MenuItem><Storage/>&nbsp;&nbsp;Github</MenuItem></a>
+            <Link to="/notice"><MenuItem><Cast />&nbsp;&nbsp;블로그 공지사항</MenuItem></Link>
+            <Link to="/chat"><MenuItem><Speaker />&nbsp;&nbsp;잡담</MenuItem></Link>
+            <Link to="/it"><MenuItem><Computer />&nbsp;&nbsp;IT</MenuItem></Link>
+            <Link to="/bicycle"><MenuItem><DirectionsBike />&nbsp;&nbsp;자전거</MenuItem></Link>
+            <Link to="/game"><MenuItem><Gamepad />&nbsp;&nbsp;게임</MenuItem></Link>
+            <Divider />
+            <a href="https://github.com/jellive/netlify_blog" target="_blank"><MenuItem><Storage />&nbsp;&nbsp;Github</MenuItem></a>
           </div>
         </Drawer>
         <div
@@ -64,6 +65,7 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, State> {
         >
           {this.props.children()}
         </div>
+        <Footer />
       </div>
     )
   }
