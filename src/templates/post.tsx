@@ -12,7 +12,10 @@ const post = ({ data }: any) => {
           <h1>{frontmatter.title}</h1>
           <h2>{frontmatter.date}</h2>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <div
+          style={{fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif"}}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
         <Disqus
           id="disqus_thread"
           shortname="jell-1"
