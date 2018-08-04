@@ -21,6 +21,7 @@ interface IndexPageProps {
             date(formatString: "MMMM DD, YYYY"): string
             path: string
             tags: string[]
+            category: string
           },
           fields: {
             slug: string
@@ -53,6 +54,7 @@ export default class extends React.Component<IndexPageProps, {}> {
                   <Link to={edge.node.fields.slug}>
                     <CardContent>
                       <h3 style={{ marginBottom: 50 }}>
+                      [{edge.node.frontmatter.category}]{" "}
                         {edge.node.frontmatter.title}{" "}
                         <span style={{ color: '#bbb' }}>
                           {"- "}{edge.node.frontmatter.date}
