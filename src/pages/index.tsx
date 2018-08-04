@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
-import { Card, CardContent, Divider } from '@material-ui/core';
+import { Card, CardContent, Divider, Chip } from '@material-ui/core';
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema
@@ -20,6 +20,7 @@ interface IndexPageProps {
             title: string
             date(formatString: "MMMM DD, YYYY"): string
             path: string
+            tags: string[]
           },
           fields: {
             slug: string
@@ -39,14 +40,14 @@ export default class extends React.Component<IndexPageProps, {}> {
       <Card>
         <CardContent>
           <h1>이것 저것 해보는 블로그입니다.</h1>
-          <p>
+          {/* <p>
             Welcome to your new{' '}
             <strong>{this.props.data.site.siteMetadata.title}</strong> site.
         </p>
-          <p>Now go build something great.</p>
+          <p>Now go build something great.</p> */}
           {/* {this.props.data.allFile.totalCount}개가 있습니다.<br /> */}
           {
-            this.props.data.allMarkdownRemark.edges.map((edge) => (
+            this.props.data.allMarkdownRemark.edges.map(edge => (
               <div style={{ padding: 15 }}>
                 <Card key={edge.node.frontmatter.title}>
                   <Link to={edge.node.fields.slug}>
@@ -54,9 +55,14 @@ export default class extends React.Component<IndexPageProps, {}> {
                       <h3 style={{ marginBottom: 50 }}>
                         {edge.node.frontmatter.title}{" "}
                         <span style={{ color: '#bbb' }}>
-                          {edge.node.frontmatter.date}
+                          {"- "}{edge.node.frontmatter.date}
                         </span>
                       </h3><br />
+                      <p>Tag:
+                      {edge.node.frontmatter.tags.map(tag => (
+                          <Chip label={tag} style={{fontSize: 12}}/>
+                        ))}
+                      </p>
                     </CardContent>
                   </Link>
                 </Card>
@@ -64,9 +70,6 @@ export default class extends React.Component<IndexPageProps, {}> {
             ))
           }
         </CardContent>
-        {/* <Link to="/notice/2018/06/19/일단_급한_일/">일단 급한 일</Link><br />
-        <Link to="/notice/2018/06/17/시작/">시작</Link><br />
-        <Link to="/page-2/">Go to page 2</Link><br /> */}
       </Card>
     )
   }
@@ -84,6 +87,7 @@ export const pageQuery = graphql`
             title
             date(formatString: "MMMM DD, YYYY")
             path
+            tags
           }
           fields {
             slug
