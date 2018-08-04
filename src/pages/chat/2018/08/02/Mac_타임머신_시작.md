@@ -1,6 +1,5 @@
 ---
 category: "Chat"
-path: "/chat/2018/08/02/Mac_타임머신_시작"
 date: "2018-08-02"
 title: "Mac 타임머신 시작"
 tags: ["삽질"]

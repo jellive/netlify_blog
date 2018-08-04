@@ -58,7 +58,7 @@ export default class extends React.Component<IndexPageProps, {}> {
                           {"- "}{edge.node.frontmatter.date}
                         </span>
                       </h3><br />
-                      <p>Tag:
+                      <p style={{fontSize: 12}}>Tag:{" "}
                       {edge.node.frontmatter.tags.map(tag => (
                           <Chip label={tag} style={{fontSize: 12}}/>
                         ))}
@@ -86,8 +86,8 @@ export const pageQuery = graphql`
             # Assumes you're using title in your frontmatter.
             title
             date(formatString: "MMMM DD, YYYY")
-            path
             tags
+            category
           }
           fields {
             slug
