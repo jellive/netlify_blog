@@ -52,7 +52,7 @@ export default class extends React.Component<IndexPageProps, {}> {
               <div style={{ padding: 15 }}>
                 <Card key={edge.node.frontmatter.title}>
                   <CardContent>
-                    <h3 style={{ marginBottom: 50 }}>
+                    <h3 style={{ marginBottom: 10 }}>
                       <Link to={edge.node.fields.slug}>
                         [{edge.node.frontmatter.category}]{" "}
                         {edge.node.frontmatter.title}{" "}
