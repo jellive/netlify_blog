@@ -38,45 +38,47 @@ export default class extends React.Component<IndexPageProps, {}> {
   }
   public render() {
     return (
-      <Card>
-        <CardContent>
-          <h1>이것 저것 해보는 블로그입니다.</h1>
-          {/* <p>
+      <>
+        <h1>이것 저것 해보는 블로그입니다.</h1>
+        <Card>
+          <CardContent>
+            {/* <p>
             Welcome to your new{' '}
             <strong>{this.props.data.site.siteMetadata.title}</strong> site.
         </p>
           <p>Now go build something great.</p> */}
-          {/* {this.props.data.allFile.totalCount}개가 있습니다.<br /> */}
-          {
-            this.props.data.allMarkdownRemark.edges.map(edge => (
-              <div style={{ padding: 15 }}>
-                <Card key={edge.node.frontmatter.title}>
-                  <CardContent>
-                    <h3 style={{ marginBottom: 10 }}>
-                      <Link to={edge.node.fields.slug}>
-                        [{edge.node.frontmatter.category}]{" "}
-                        {edge.node.frontmatter.title}{" "}
-                        <span style={{ color: '#bbb' }}>
-                          {"- "}{edge.node.frontmatter.date}
-                        </span>
-                      </Link>
-                    </h3><br />
-                    <div
-                      style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
-                      dangerouslySetInnerHTML={{ __html: edge.node.html }}
-                    />
-                    <p style={{ fontSize: 12 }}>Tag:{" "}
-                      {edge.node.frontmatter.tags.map(tag => (
-                        <Chip label={tag} style={{ fontSize: 12 }} />
-                      ))}
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            ))
-          }
-        </CardContent>
-      </Card>
+            {/* {this.props.data.allFile.totalCount}개가 있습니다.<br /> */}
+            {
+              this.props.data.allMarkdownRemark.edges.map(edge => (
+                <div style={{ padding: 15 }}>
+                  <Card key={edge.node.frontmatter.title}>
+                    <CardContent>
+                      <h3 style={{ marginBottom: 10 }}>
+                        <Link to={edge.node.fields.slug}>
+                          [{edge.node.frontmatter.category}]{" "}
+                          {edge.node.frontmatter.title}{" "}
+                          <span style={{ color: '#bbb' }}>
+                            {"- "}{edge.node.frontmatter.date}
+                          </span>
+                        </Link>
+                      </h3><br />
+                      <div
+                        style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
+                        dangerouslySetInnerHTML={{ __html: edge.node.html }}
+                      />
+                      <p style={{ fontSize: 12 }}>Tag:{" "}
+                        {edge.node.frontmatter.tags.map(tag => (
+                          <Chip label={tag} style={{ fontSize: 12 }} />
+                        ))}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))
+            }
+          </CardContent>
+        </Card>
+      </>
     )
   }
 }
