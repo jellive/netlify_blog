@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
-import { Card, CardContent, Divider, Chip } from '@material-ui/core';
+import { Card, CardContent, Chip } from '@material-ui/core';
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema
@@ -39,7 +39,8 @@ export default class extends React.Component<IndexPageProps, {}> {
   public render() {
     return (
       <>
-        <h1>이것 저것 해보는 블로그입니다.</h1>
+        <h1 style={{textAlign: "center"}}>Be the jell.</h1>
+        <h3 style={{textAlign: "center", color: '#777'}}>이것저것 해보는 블로그입니다.</h3>
         <Card>
           <CardContent>
             {/* <p>
