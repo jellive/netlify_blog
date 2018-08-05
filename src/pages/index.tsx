@@ -51,22 +51,26 @@ export default class extends React.Component<IndexPageProps, {}> {
             this.props.data.allMarkdownRemark.edges.map(edge => (
               <div style={{ padding: 15 }}>
                 <Card key={edge.node.frontmatter.title}>
-                  <Link to={edge.node.fields.slug}>
-                    <CardContent>
-                      <h3 style={{ marginBottom: 50 }}>
-                      [{edge.node.frontmatter.category}]{" "}
+                  <CardContent>
+                    <h3 style={{ marginBottom: 50 }}>
+                      <Link to={edge.node.fields.slug}>
+                        [{edge.node.frontmatter.category}]{" "}
                         {edge.node.frontmatter.title}{" "}
                         <span style={{ color: '#bbb' }}>
                           {"- "}{edge.node.frontmatter.date}
                         </span>
-                      </h3><br />
-                      <p style={{fontSize: 12}}>Tag:{" "}
+                      </Link>
+                    </h3><br />
+                    <div
+                      style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
+                      dangerouslySetInnerHTML={{ __html: edge.node.html }}
+                    />
+                    <p style={{ fontSize: 12 }}>Tag:{" "}
                       {edge.node.frontmatter.tags.map(tag => (
-                          <Chip label={tag} style={{fontSize: 12}}/>
-                        ))}
-                      </p>
-                    </CardContent>
-                  </Link>
+                        <Chip label={tag} style={{ fontSize: 12 }} />
+                      ))}
+                    </p>
+                  </CardContent>
                 </Card>
               </div>
             ))
@@ -91,6 +95,7 @@ export const pageQuery = graphql`
             tags
             category
           }
+          html
           fields {
             slug
           }

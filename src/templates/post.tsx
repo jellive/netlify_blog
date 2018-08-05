@@ -6,24 +6,33 @@ const post = ({ data }: any) => {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   return (
-    <Card>
-      <CardContent>
-        <div>
-          <h1>{frontmatter.title}</h1>
-          <h2>{frontmatter.date}</h2>
-        </div>
-        <div
-          style={{fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif"}}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-        <Disqus
-          id="disqus_thread"
-          shortname="jell-1"
-          title={frontmatter.title}
-          identifier={frontmatter.title}
-        />
-      </CardContent>
-    </Card>
+    <>
+      <div style={{ padding: 15 }}>
+        <Card>
+          <CardContent>
+            <div>
+              <h1>{frontmatter.title}</h1>
+              <h2>{frontmatter.date}</h2>
+            </div>
+            <div
+              style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          </CardContent>
+        </Card>
+      </div>
+      <div style={{ padding: 15 }}>
+        <Card>
+          <CardContent>
+            <Disqus
+              id="disqus_thread"
+              shortname="jell-1"
+              title={frontmatter.title}
+              identifier={frontmatter.title}
+            /></CardContent>
+        </Card>
+      </div>
+    </>
   )
 }
 
