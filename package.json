@@ -15,10 +15,12 @@
     "gatsby-plugin-sharp": "^1.6.48",
     "gatsby-plugin-typescript": "^1.4.10",
     "gatsby-remark-images": "^1.5.67",
+    "gatsby-remark-prismjs": "^2.0.5",
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-remark": "^1.7.44",
     "lodash": "^4.17.10",
     "material-ui-pagination": "^1.1.6",
+    "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-disqus-comments": "^1.2.0",
@@ -39,7 +41,7 @@
     "@types/lodash": "^4.14.110",
     "@types/material-ui-pagination": "^1.0.1",
     "jshint": "^2.9.5",
-    "prettier": "^1.8.2"
+    "prettier": "^1.14.0"
   },
   "contributors": [
     "fabien0102 <fabien0102@gmail.com>",

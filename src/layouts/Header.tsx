@@ -2,6 +2,7 @@ import * as React from 'react'
 import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core"
 import { Menu as MenuIcon } from "@material-ui/icons"
 import Link from "gatsby-link"
+require("./prism.css")
 
 const Header = (props: { menuClicked: (e: any) => void }): JSX.Element => (
   <AppBar>
