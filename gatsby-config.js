@@ -13,6 +13,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     // Add typescript stack into webpack
     `gatsby-plugin-typescript`,
+    `gatsby-transformer-sharp`,
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-transformer-remark`,

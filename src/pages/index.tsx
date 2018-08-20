@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
+import Img from 'gatsby-image'
 import { Card, CardContent, Chip } from '@material-ui/core';
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
@@ -22,7 +23,13 @@ interface IndexPageProps {
             path: string
             tags: string[]
             category: string
-          },
+            featuredImage: {
+              publicURL: string
+              childImageSharp: {
+                sizes: any
+              }
+            }
+          }
           fields: {
             slug: string
           }
@@ -39,21 +46,18 @@ export default class extends React.Component<IndexPageProps, {}> {
   public render() {
     return (
       <>
-        <h1 style={{textAlign: "center"}}>Be the jell.</h1>
-        <h3 style={{textAlign: "center", color: '#777'}}>이것저것 해보는 블로그입니다.</h3>
+        <h1 style={{ textAlign: "center" }}>Be the jell.</h1>
+        <h3 style={{ textAlign: "center", color: '#777' }}>이것저것 해보는 블로그입니다.</h3>
         <Card>
           <CardContent>
-            {/* <p>
-            Welcome to your new{' '}
-            <strong>{this.props.data.site.siteMetadata.title}</strong> site.
-        </p>
-          <p>Now go build something great.</p> */}
-            {/* {this.props.data.allFile.totalCount}개가 있습니다.<br /> */}
             {
               this.props.data.allMarkdownRemark.edges.map(edge => (
                 <div style={{ padding: 15 }}>
                   <Card key={edge.node.frontmatter.title}>
                     <CardContent>
+                      {
+                        edge.node.frontmatter.featuredImage
+                        && <img src={edge.node.frontmatter.featuredImage.publicURL} />}
                       <h3 style={{ marginBottom: 10 }}>
                         <Link to={edge.node.fields.slug}>
                           [{edge.node.frontmatter.category}]{" "}
@@ -97,6 +101,14 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             tags
             category
+            featuredImage {
+              publicURL
+              childImageSharp{
+                  sizes(maxWidth: 630) {
+                      srcSet
+                  }
+              }
+            }
           }
           html
           fields {
