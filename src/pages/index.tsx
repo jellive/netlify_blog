@@ -16,7 +16,7 @@ interface IndexPageProps {
     allMarkdownRemark: {
       edges: {
         node: {
-          html: string
+          excerpt: string
           frontmatter: {
             title: string
             date(formatString: "MMMM DD, YYYY"): string
@@ -55,9 +55,6 @@ export default class extends React.Component<IndexPageProps, {}> {
                 <div style={{ padding: 15 }}>
                   <Card key={edge.node.frontmatter.title}>
                     <CardContent>
-                      {
-                        edge.node.frontmatter.featuredImage
-                        && <img src={edge.node.frontmatter.featuredImage.publicURL} />}
                       <h3 style={{ marginBottom: 10 }}>
                         <Link to={edge.node.fields.slug}>
                           [{edge.node.frontmatter.category}]{" "}
@@ -67,9 +64,14 @@ export default class extends React.Component<IndexPageProps, {}> {
                           </span>
                         </Link>
                       </h3><br />
-                      <div
+                      {
+                        edge.node.frontmatter.featuredImage
+                        // && <img style={{ margin: 'auto' }} src={edge.node.frontmatter.featuredImage.publicURL} />
+                        && <Img sizes={edge.node.frontmatter.featuredImage.childImageSharp.sizes} />
+                      }
+                      <p
                         style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
-                        dangerouslySetInnerHTML={{ __html: edge.node.html }}
+                        dangerouslySetInnerHTML={{ __html: edge.node.excerpt }}
                       />
                       <p style={{ fontSize: 12 }}>Tag:{" "}
                         {edge.node.frontmatter.tags.map(tag => (
@@ -104,13 +106,14 @@ export const pageQuery = graphql`
             featuredImage {
               publicURL
               childImageSharp{
-                  sizes(maxWidth: 630) {
+                  sizes(maxWidth: 630, maxHeight: 360) {
                       srcSet
+                      ...GatsbyImageSharpSizes
                   }
               }
             }
           }
-          html
+          excerpt(pruneLength: 250)
           fields {
             slug
           }
