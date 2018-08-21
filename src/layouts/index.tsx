@@ -49,7 +49,7 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, State> {
             <Link to="/"><MenuItem>홈</MenuItem></Link>
             <Link to="/notice"><MenuItem><Cast />&nbsp;&nbsp;블로그 공지사항</MenuItem></Link>
             <Link to="/chat"><MenuItem><Speaker />&nbsp;&nbsp;잡담</MenuItem></Link>
-            <Link to="/it"><MenuItem><Computer />&nbsp;&nbsp;IT</MenuItem></Link>
+            <Link to="/dev"><MenuItem><Computer />&nbsp;&nbsp;개발</MenuItem></Link>
             <Link to="/bicycle"><MenuItem><DirectionsBike />&nbsp;&nbsp;자전거</MenuItem></Link>
             <Link to="/game"><MenuItem><Gamepad />&nbsp;&nbsp;게임</MenuItem></Link>
             <Divider />

@@ -1,12 +1,12 @@
 ---
-category: "Chat"
+category: "Dev"
 date: "2018-08-07"
 title: "XMLHttpMethod - 서버와 상호작용하기"
 tags: ["개발", "Javascript"]
 ---
 XMLHttpRequest(XHR)은 서버와 상호작용을 가능하게 해주는 객체입니다.  
 Ajax에 주로 쓰이며, 마찬가지로 전체 데이터를 새로 불러오지 않고도 일부분만을 업데이트 할 수 있습니다.  
-저는 이를 [블로그 서버의 online상태](https://blog.jell.kr/chat/2018/08/07/내_블로그는_살아있는가/)를 확인하는 데에 사용했습니다.
+저는 이를 [블로그 서버의 online상태를 확인](https://blog.jell.kr/chat/2018/08/07/내_블로그는_살아있는가/)하는 데에 사용했습니다.
 ```javascript
 let xhttp = new XMLHttpRequest() // XMLHttpRequest 객체를 만듭니다.
 xhttp.onreadystatechange = () => { // xhttp객체의 상태가 변화할 때 비동기로 실행됩니다.
