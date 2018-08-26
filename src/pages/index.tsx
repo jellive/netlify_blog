@@ -53,33 +53,33 @@ export default class extends React.Component<IndexPageProps, {}> {
             {
               this.props.data.allMarkdownRemark.edges.map(edge => (
                 <div style={{ padding: 15 }}>
-                  <Card key={edge.node.frontmatter.title}>
-                    <CardContent>
-                      <h3 style={{ marginBottom: 10 }}>
-                        <Link to={edge.node.fields.slug}>
+                  <Link to={edge.node.fields.slug}>
+                    <Card key={edge.node.frontmatter.title}>
+                      <CardContent>
+                        <h3 style={{ marginBottom: 10 }}>
                           [{edge.node.frontmatter.category}]{" "}
                           {edge.node.frontmatter.title}{" "}
                           <span style={{ color: '#bbb' }}>
                             {"- "}{edge.node.frontmatter.date}
                           </span>
-                        </Link>
-                      </h3><br />
-                      {
-                        edge.node.frontmatter.featuredImage
-                        // && <img style={{ margin: 'auto' }} src={edge.node.frontmatter.featuredImage.publicURL} />
-                        && <Img sizes={edge.node.frontmatter.featuredImage.childImageSharp.sizes} />
-                      }
-                      <p
-                        style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
-                        dangerouslySetInnerHTML={{ __html: edge.node.excerpt }}
-                      />
-                      <p style={{ fontSize: 12 }}>Tag:{" "}
-                        {edge.node.frontmatter.tags.map(tag => (
-                          <Chip label={tag} style={{ fontSize: 12 }} />
-                        ))}
-                      </p>
-                    </CardContent>
-                  </Card>
+                        </h3><br />
+                        {
+                          edge.node.frontmatter.featuredImage
+                          // && <img style={{ margin: 'auto' }} src={edge.node.frontmatter.featuredImage.publicURL} />
+                          && <Img sizes={edge.node.frontmatter.featuredImage.childImageSharp.sizes} />
+                        }
+                        <p
+                          style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
+                          dangerouslySetInnerHTML={{ __html: edge.node.excerpt }}
+                        />
+                        <p style={{ fontSize: 12 }}>Tag:{" "}
+                          {edge.node.frontmatter.tags.map(tag => (
+                            <Chip label={tag} style={{ fontSize: 12 }} />
+                          ))}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </div>
               ))
             }
