@@ -2,7 +2,7 @@
 category: "Dev"
 date: "2018-09-30T20:20:00Z"
 title: "콜백 함수 사용 시 try catch 문 사용 방법"
-tags: ["개발", "Javascript"]
+tags: ["개발", "Javascript", "Typescript"]
 ---
 콜백 함수는 아무리 해도 적응이 안됩니다.  
 타 언어(C, Java, Swift 등..)에서 당연하다 생각되었던 방법들이 하필 Javascript/Typescript에서만 안되면 곤혹스러운데요.  

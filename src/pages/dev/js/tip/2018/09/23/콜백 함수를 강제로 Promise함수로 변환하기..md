@@ -2,7 +2,7 @@
 category: "Dev"
 date: "2018-09-23T17:08:00Z"
 title: "콜백 함수를 강제로 Promise로 변환하기."
-tags: ["개발", "Javascript"]
+tags: ["개발", "Javascript", "Typescript"]
 ---
 Node.js는 Javascript를 html에서 어플리케이션용 언어로 쓸 수 있게 해주는 언어입니다.  
 
