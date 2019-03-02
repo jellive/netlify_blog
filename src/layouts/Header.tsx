@@ -10,7 +10,7 @@ const Header = (props: { menuClicked: (e: any) => void }): JSX.Element => (
       <IconButton color="inherit" aria-label="Menu" onClick={props.menuClicked}>
         <MenuIcon />
       </IconButton>
-      <Typography variant="title" style={{ flex: 1 }} color="inherit"><Link to="/">Jell의 세상 사는 이야기.</Link></Typography>
+      <Typography variant="title" style={{ flex: 1, textAlign: 'center' }} color="inherit"><Link to="/">Jell의 세상 사는 이야기.</Link></Typography>
     </Toolbar>
   </AppBar>
 )
