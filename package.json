@@ -20,7 +20,7 @@
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-remark": "^1.7.44",
     "gatsby-transformer-sharp": "^1.6.27",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.13",
     "material-ui-pagination": "^1.1.6",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
