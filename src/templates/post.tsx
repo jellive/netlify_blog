@@ -1,12 +1,33 @@
+import {graphql, StaticQuery} from 'gatsby'
 import * as React from 'react'
 import Helmet from 'react-helmet'
 import { Card, CardContent } from '@material-ui/core';
 const Disqus = require('../components/Disqus/Disqus')
 
-const post = ({ data }: any) => {
-  const { markdownRemark } = data
-  const { frontmatter, html } = markdownRemark
+const post = () => {
+  // const { markdownRemark } = data
+  // const { frontmatter, html } = markdownRemark
   return (
+    <StaticQuery 
+    query={graphql`
+    query BlogPostQuery($slug: String) {
+      markdownRemark(fields: { slug: { eq: $slug } }) {
+        html
+        frontmatter {
+          category
+          title
+          date
+        }
+      }
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+    `}
+    render={data => (
+      
     <>
     <Helmet
       title={`${data.markdownRemark.frontmatter.title} - ${data.site.siteMetadata.title}`}
@@ -19,12 +40,12 @@ const post = ({ data }: any) => {
         <Card>
           <CardContent>
             <div>
-              <h1>{frontmatter.title}</h1>
-              <h2>{frontmatter.date}</h2>
+              <h1>{data.markdownRemark.frontmatter.title}</h1>
+              <h2>{data.markdownRemark.frontmatter.date}</h2>
             </div>
             <div
               style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
-              dangerouslySetInnerHTML={{ __html: html }}
+              dangerouslySetInnerHTML={{ __html: data.html }}
             />
           </CardContent>
         </Card>
@@ -40,27 +61,29 @@ const post = ({ data }: any) => {
             /></CardContent>
         </Card>
       </div>
-    </>
+</>
+    )}/>
+   
   )
 }
 
 export default post
 
-export const pageQuery = graphql`
-query BlogPostQuery($slug: String!) {
-  markdownRemark(fields: { slug: { eq: $slug } }) {
-    html
-    frontmatter {
-      category
-      title
-      date
-    }
-  }
-  site {
-    siteMetadata {
-      title
-    }
-  }
-}
-`;
+// export const pageQuery = graphql`
+// query BlogPostQuery($slug: String!) {
+//   markdownRemark(fields: { slug: { eq: $slug } }) {
+//     html
+//     frontmatter {
+//       category
+//       title
+//       date
+//     }
+//   }
+//   site {
+//     siteMetadata {
+//       title
+//     }
+//   }
+// }
+// `;
 

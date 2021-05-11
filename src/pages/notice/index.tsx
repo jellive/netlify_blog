@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
+import {graphql, StaticQuery} from 'gatsby'
 import Img from 'gatsby-image'
 import { Card, CardContent, Chip } from '@material-ui/core';
 
@@ -49,9 +50,51 @@ export default class extends React.Component<IndexPageProps, {}> {
         <h1 style={{ textAlign: "center" }}>Be the jell.</h1>
         <h3 style={{ textAlign: "center", color: '#777' }}>이것저것 해보는 블로그입니다.</h3>
         <Card>
+          <StaticQuery
+          query={graphql`
+          query NoticeQuery {
+            allMarkdownRemark (
+              filter: {frontmatter: {category: {eq: "Notice"}}}
+              sort: {fields: [frontmatter___date], order: DESC}
+            ) {
+              edges {
+                node {
+                  frontmatter {
+                    # Assumes you're using title in your frontmatter.
+                    title
+                    date(formatString: "MMMM DD, YYYY")
+                    tags
+                    category
+                    featuredImage {
+                      publicURL
+                      childImageSharp {
+                        fluid(maxWidth: 630) {
+                          srcSet
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                    }
+                  }
+                  excerpt(pruneLength: 250)
+                  fields {
+                    slug
+                  }
+                }
+              }
+            }
+            site {
+              siteMetadata {
+                title
+              }
+            }
+          }
+        `
+        }
+        render={data => (
+
           <CardContent>
             {
-              this.props.data.allMarkdownRemark.edges.map(edge => (
+              data.allMarkdownRemark.edges.map(edge => (
                 <div style={{ padding: 15 }}>
                   <Card key={edge.node.frontmatter.title}>
                     <CardContent>
@@ -67,7 +110,7 @@ export default class extends React.Component<IndexPageProps, {}> {
                       {
                         edge.node.frontmatter.featuredImage
                         // && <img style={{ margin: 'auto' }} src={edge.node.frontmatter.featuredImage.publicURL} />
-                        && <Img sizes={edge.node.frontmatter.featuredImage.childImageSharp.sizes} />
+                        && <Img fluid={edge.node.frontmatter.featuredImage.childImageSharp.fluid} />
                       }
                       <p
                         style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
@@ -84,47 +127,48 @@ export default class extends React.Component<IndexPageProps, {}> {
               ))
             }
           </CardContent>
+        )}/>
         </Card>
       </>
     )
   }
 }
 
-export const pageQuery = graphql`
-  query NoticeQuery {
-    allMarkdownRemark (
-      filter: {frontmatter: {category: {eq: "Notice"}}}
-      sort: {fields: [frontmatter___date], order: DESC}
-    ) {
-      edges {
-        node {
-          frontmatter {
-            # Assumes you're using title in your frontmatter.
-            title
-            date(formatString: "MMMM DD, YYYY")
-            tags
-            category
-            featuredImage {
-              publicURL
-              childImageSharp{
-                  sizes(maxWidth: 630, maxHeight: 360) {
-                      srcSet
-                      ...GatsbyImageSharpSizes
-                  }
-              }
-            }
-          }
-          excerpt(pruneLength: 250)
-          fields {
-            slug
-          }
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query NoticeQuery {
+//     allMarkdownRemark (
+//       filter: {frontmatter: {category: {eq: "Notice"}}}
+//       sort: {fields: [frontmatter___date], order: DESC}
+//     ) {
+//       edges {
+//         node {
+//           frontmatter {
+//             # Assumes you're using title in your frontmatter.
+//             title
+//             date(formatString: "MMMM DD, YYYY")
+//             tags
+//             category
+//             featuredImage {
+//               publicURL
+//               childImageSharp{
+//                   sizes(maxWidth: 630, maxHeight: 360) {
+//                       srcSet
+//                       ...GatsbyImageSharpSizes
+//                   }
+//               }
+//             }
+//           }
+//           excerpt(pruneLength: 250)
+//           fields {
+//             slug
+//           }
+//         }
+//       }
+//     }
+//     site {
+//       siteMetadata {
+//         title
+//       }
+//     }
+//   }
+// `

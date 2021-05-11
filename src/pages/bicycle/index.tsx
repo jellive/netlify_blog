@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
+import {graphql} from 'gatsby'
 import Img from 'gatsby-image'
 import { Card, CardContent, Chip } from '@material-ui/core';
 
