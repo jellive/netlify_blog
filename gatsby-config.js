@@ -3,6 +3,9 @@ module.exports = {
     title: `Jell의 세상 사는 이야기`,
     author: `Jell`
   },
+  flags: {
+    THE_FLAG: false
+  },
   plugins: [{
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -13,6 +16,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     // Add typescript stack into webpack
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     'gatsby-plugin-sharp',
     {

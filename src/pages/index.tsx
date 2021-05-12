@@ -1,13 +1,13 @@
 import * as React from 'react'
-import {graphql} from 'gatsby'
+import {graphql, StaticQuery, useStaticQuery} from 'gatsby'
 import Link from 'gatsby-link'
-import Img from 'gatsby-image'
+import { GatsbyImage, GatsbyImageProps, IGatsbyImageData } from "gatsby-plugin-image";
 import { Card, CardContent, Chip } from '@material-ui/core';
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema
 interface IndexPageProps {
-  data: {
+  // data: {
     site: {
       siteMetadata: {
         title: string
@@ -27,7 +27,8 @@ interface IndexPageProps {
             featuredImage: {
               publicURL: string
               childImageSharp: {
-                sizes: any
+                // sizes: any
+                gatsbyImageData: IGatsbyImageData
               }
             }
           }
@@ -37,80 +38,29 @@ interface IndexPageProps {
         }
       }[]
     }
-  }
+  // }
 }
 
 export default class extends React.Component<IndexPageProps, {}> {
-  constructor(props: IndexPageProps, context: any) {
-    super(props, context)
-  }
+  //  data = useStaticQuery()
   public render() {
-    return (
-      <>
-        <h1 style={{ textAlign: "center" }}>Be the jell.</h1>
-        <h3 style={{ textAlign: "center", color: '#777' }}>이것저것 해보는 블로그입니다.</h3>
-        <Card>
-          <CardContent>
-            {
-              this.props.data.allMarkdownRemark.edges.map(edge => (
-                <div style={{ padding: 15 }}>
-                  <Link to={edge.node.fields.slug}>
-                    <Card key={edge.node.frontmatter.title}>
-                      <CardContent>
-                        <h3 style={{ marginBottom: 10 }}>
-                          [{edge.node.frontmatter.category}]{" "}
-                          {edge.node.frontmatter.title}{" "}
-                          <span style={{ color: '#bbb' }}>
-                            {"- "}{edge.node.frontmatter.date}
-                          </span>
-                        </h3><br />
-                        {
-                          edge.node.frontmatter.featuredImage
-                          // && <img style={{ margin: 'auto' }} src={edge.node.frontmatter.featuredImage.publicURL} />
-                          && <Img sizes={edge.node.frontmatter.featuredImage.childImageSharp.sizes} />
-                        }
-                        <p
-                          style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
-                          dangerouslySetInnerHTML={{ __html: edge.node.excerpt }}
-                        />
-                        <p style={{ fontSize: 12 }}>Tag:{" "}
-                          {edge.node.frontmatter.tags.map(tag => (
-                            <Chip label={tag} style={{ fontSize: 12 }} />
-                          ))}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </div>
-              ))
-            }
-          </CardContent>
-        </Card>
-      </>
-    )
-  }
-}
-
-export const pageQuery = graphql`
-  query IndexQuery {
-    allMarkdownRemark (
-      sort: {fields: [frontmatter___date], order: DESC}
-    ) {
+    
+    return (<>
+      <h1 style={{ textAlign: "center" }}>Be the jell.</h1>
+      <h3 style={{ textAlign: "center", color: '#777' }}>이것저것 해보는 블로그입니다.</h3>
+      <StaticQuery query={graphql`query IndexQuery {
+    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
       edges {
         node {
           frontmatter {
-            # Assumes you're using title in your frontmatter.
             title
             date(formatString: "MMMM DD, YYYY")
             tags
             category
             featuredImage {
               publicURL
-              childImageSharp{
-                  sizes(maxWidth: 630, maxHeight: 360) {
-                      srcSet
-                      ...GatsbyImageSharpSizes
-                  }
+              childImageSharp {
+                gatsbyImageData(width: 630, placeholder: BLURRED, layout: CONSTRAINED)
               }
             }
           }
@@ -127,4 +77,87 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+  `} render={(data: IndexPageProps) => (
+
+<Card>
+        <CardContent>
+          {
+            data.allMarkdownRemark.edges.map((edge, index ) => (
+              <div style={{ padding: 15 }} key={`edge-${index}`}>
+                <Link to={edge.node.fields.slug}>
+                  <Card key={edge.node.frontmatter.title}>
+                    <CardContent>
+                      <h3 style={{ marginBottom: 10 }}>
+                        [{edge.node.frontmatter.category}]{" "}
+                        {edge.node.frontmatter.title}{" "}
+                        <span style={{ color: '#bbb' }}>
+                          {"- "}{edge.node.frontmatter.date}
+                        </span>
+                      </h3><br />
+                      {
+                        edge.node.frontmatter.featuredImage
+                        // && <img style={{ margin: 'auto' }} src={edge.node.frontmatter.featuredImage.publicURL} />
+                        && <GatsbyImage
+                          image={edge.node.frontmatter.featuredImage.childImageSharp.gatsbyImageData} 
+                          alt={null}/>
+                      }
+                      <p
+                        style={{ fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }}
+                        dangerouslySetInnerHTML={{ __html: edge.node.excerpt }}
+                      />
+                      <p style={{ fontSize: 12 }}>Tag:{" "}
+                        {edge.node.frontmatter.tags.map(tag => (
+                          <Chip label={tag} style={{ fontSize: 12 }} />
+                        ))}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </div>
+            ))
+          }
+        </CardContent>
+      </Card>
+      )}/>
+      
+    </>)
+  }
+}
+
+// export const pageQuery = graphql`
+//   query IndexQuery {
+//     allMarkdownRemark (
+//       sort: {fields: [frontmatter___date], order: DESC}
+//     ) {
+//       edges {
+//         node {
+//           frontmatter {
+//             # Assumes you're using title in your frontmatter.
+//             title
+//             date(formatString: "MMMM DD, YYYY")
+//             tags
+//             category
+//             featuredImage {
+//               publicURL
+//               childImageSharp{
+//                   fluid(maxWidth: 630) {
+//                       srcSet
+//                       ...GatsbyImageSharpFluid
+//                   }
+//               }
+//             }
+//           }
+//           excerpt(pruneLength: 250)
+//           fields {
+//             slug
+//           }
+//         }
+//       }
+//     }
+//     site {
+//       siteMetadata {
+//         title
+//       }
+//     }
+//   }
+// `

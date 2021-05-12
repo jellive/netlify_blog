@@ -28,14 +28,13 @@ export default ({ data }: Props) => (
 render={data => (
   <>
   <h1>{data.site.siteMetadata.title}</h1>
-  </>
-)}
-/>
+  
     
     <p>
       이것 저것 합니다.
     </p>
-  </div>
+    </>
+)}/></div>
 );
 
 // export const aboutQuery = graphql`

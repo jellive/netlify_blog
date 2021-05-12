@@ -1,4 +1,4 @@
-import {graphql, StaticQuery} from 'gatsby'
+import {graphql, StaticQuery, useStaticQuery} from 'gatsby'
 import * as React from 'react'
 import Helmet from 'react-helmet'
 import { Card, CardContent } from '@material-ui/core';
@@ -7,27 +7,26 @@ const Disqus = require('../components/Disqus/Disqus')
 const post = () => {
   // const { markdownRemark } = data
   // const { frontmatter, html } = markdownRemark
-  return (
-    <StaticQuery 
-    query={graphql`
-    query BlogPostQuery($slug: String) {
-      markdownRemark(fields: { slug: { eq: $slug } }) {
-        html
-        frontmatter {
-          category
-          title
-          date
-        }
-      }
-      site {
-        siteMetadata {
-          title
-        }
+  const data = useStaticQuery(graphql`
+  query($slug: String) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
+      frontmatter {
+        category
+        title
+        date
       }
     }
-    `}
-    render={data => (
-      
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+  `
+
+  )
+  return (
     <>
     <Helmet
       title={`${data.markdownRemark.frontmatter.title} - ${data.site.siteMetadata.title}`}
@@ -56,13 +55,12 @@ const post = () => {
             <Disqus
               id="disqus_thread"
               shortname="jell-1"
-              title={frontmatter.title}
-              identifier={frontmatter.title}
+              title={data.markdownRemark.frontmatter.title}
+              identifier={data.markdownRemark.frontmatter.title}
             /></CardContent>
         </Card>
       </div>
 </>
-    )}/>
    
   )
 }
