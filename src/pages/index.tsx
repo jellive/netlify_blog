@@ -96,7 +96,7 @@ export default class extends React.Component {
             <Card>
               <CardContent>
                 {data.allMarkdownRemark.edges.map((edge, index: number) => (
-                  <div style={{ padding: 15 }} key={edge.node.frontmatter.title}>
+                  <div style={{ padding: 15 }} key={index}>
                     <Link to={edge.node.fields.slug}>
                       <Card >
                         <CardContent>

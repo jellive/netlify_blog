@@ -3,9 +3,9 @@ module.exports = {
     title: `Jell의 세상 사는 이야기`,
     author: `Jell`
   },
-  flags: {
-    THE_FLAG: false
-  },
+  // flags: {
+  //   DEV_SSR: false
+  // },
   plugins: [{
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -55,6 +55,12 @@ module.exports = {
               // bash highlighter.
               aliases: {},
             },
+          },
+          { // gatsby v3 image
+            resolve: `gatsby-source-filesystem`,
+            options: {
+              path: `${__dirname}/src/pages`
+            }
           }
         ],
       },

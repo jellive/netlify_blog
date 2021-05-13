@@ -18,8 +18,7 @@ import {
   Storage,
 } from '@material-ui/icons'
 import { Link } from 'gatsby'
-import Helmet from 'react-helmet'
-import { graphql } from 'react-apollo'
+import {Helmet} from 'react-helmet'
 
 import './index.css'
 import Header from './Header'

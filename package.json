@@ -50,6 +50,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.110",
     "@types/material-ui-pagination": "^1.0.1",
+    "@types/react-helmet": "^6.1.1",
     "jshint": "^2.9.5",
     "prettier": "^2.3.0"
   },

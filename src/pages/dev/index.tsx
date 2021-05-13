@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
-import { graphql } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { Card, CardContent, Chip } from '@material-ui/core'
 
@@ -93,7 +93,7 @@ export default class extends React.Component<IndexPageProps, {}> {
           render={(data) => (
             <Card>
               <CardContent>
-                {this.props.data.allMarkdownRemark.edges.map((edge) => (
+                {data.allMarkdownRemark.edges.map((edge) => (
                   <div style={{ padding: 15 }}>
                     <Card key={edge.node.frontmatter.title}>
                       <CardContent>
@@ -111,6 +111,7 @@ export default class extends React.Component<IndexPageProps, {}> {
                         {edge.node.frontmatter.featuredImage && (
                           // && <img style={{ margin: 'auto' }} src={edge.node.frontmatter.featuredImage.publicURL} />
                           <GatsbyImage
+                            image={edge.node.frontmatter.featuredImage.childImageSharp.gatsbyImageData}
                             sizes={
                               edge.node.frontmatter.featuredImage
                                 .childImageSharp.sizes
