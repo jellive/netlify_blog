@@ -1,5 +1,4 @@
-
-import * as React from "react"
+import * as React from 'react'
 import './Footer.css'
 
 const Footer = () => {
@@ -9,7 +8,7 @@ const Footer = () => {
         <h4>Copyright 2018 Jell, All right reserved.</h4>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

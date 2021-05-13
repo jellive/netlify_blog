@@ -1,5 +1,5 @@
+import { Link } from 'gatsby'
 import * as React from 'react'
-import Link from 'gatsby-link'
 
 const 시작 = () => (
   <div>

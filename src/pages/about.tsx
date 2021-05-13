@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react'
+import { graphql, StaticQuery } from 'gatsby'
 
 interface Props {
   data: {
@@ -13,19 +14,33 @@ interface Props {
 export default ({ data }: Props) => (
   <div>
     {/* <h1>About {JSON.stringify(data)}</h1><br /> */}
-    <h1>{data.site.siteMetadata.title}</h1>
-    <p>
-      이것 저것 합니다.
-    </p>
-  </div>
-);
+    <StaticQuery
+      query={graphql`
+        query AboutQuery {
+          site {
+            siteMetadata {
+              title
+            }
+          }
+        }
+      `}
+      render={(data) => (
+        <>
+          <h1>{data.site.siteMetadata.title}</h1>
 
-export const aboutQuery = graphql`
-  query AboutQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
+          <p>이것 저것 합니다.</p>
+        </>
+      )}
+    />
+  </div>
+)
+
+// export const aboutQuery = graphql`
+//   query AboutQuery {
+//     site {
+//       siteMetadata {
+//         title
+//       }
+//     }
+//   }
+// `
