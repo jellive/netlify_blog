@@ -1,14 +1,29 @@
 import * as React from 'react'
-import { AppBar, Toolbar, IconButton, Typography, Drawer, MenuItem, Divider } from '@material-ui/core'
-import { Menu as MenuIcon, Cast, Speaker, Computer, DirectionsBike, Gamepad, Storage } from '@material-ui/icons'
-import Link from 'gatsby-link'
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Drawer,
+  MenuItem,
+  Divider,
+} from '@material-ui/core'
+import {
+  Menu as MenuIcon,
+  Cast,
+  Speaker,
+  Computer,
+  DirectionsBike,
+  Gamepad,
+  Storage,
+} from '@material-ui/icons'
+import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import { graphql } from 'react-apollo'
 
 import './index.css'
-import Header from './Header';
-import Footer from './Footer';
-
+import Header from './Header'
+import Footer from './Footer'
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
@@ -25,12 +40,12 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, State> {
   constructor(props: DefaultLayoutProps) {
     super(props)
     this.state = {
-      openMenu: false
+      openMenu: false,
     }
   }
 
   public render() {
-    console.log(this.props.children());
+    console.log(this.props.children())
     return (
       <div>
         <Helmet
@@ -43,17 +58,51 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, State> {
         <Header menuClicked={this.menuClicked} />
         <Drawer
           open={this.state.openMenu}
-          onClose={() => { this.setState({ openMenu: false }) }}
+          onClose={() => {
+            this.setState({ openMenu: false })
+          }}
         >
           <div style={{ width: 200 }}>
-            <Link to="/"><MenuItem>홈</MenuItem></Link>
-            <Link to="/notice"><MenuItem><Cast />&nbsp;&nbsp;블로그 공지사항</MenuItem></Link>
-            <Link to="/chat"><MenuItem><Speaker />&nbsp;&nbsp;잡담</MenuItem></Link>
-            <Link to="/dev"><MenuItem><Computer />&nbsp;&nbsp;개발</MenuItem></Link>
-            <Link to="/bicycle"><MenuItem><DirectionsBike />&nbsp;&nbsp;자전거</MenuItem></Link>
-            <Link to="/game"><MenuItem><Gamepad />&nbsp;&nbsp;게임</MenuItem></Link>
+            <Link to="/">
+              <MenuItem>홈</MenuItem>
+            </Link>
+            <Link to="/notice">
+              <MenuItem>
+                <Cast />
+                &nbsp;&nbsp;블로그 공지사항
+              </MenuItem>
+            </Link>
+            <Link to="/chat">
+              <MenuItem>
+                <Speaker />
+                &nbsp;&nbsp;잡담
+              </MenuItem>
+            </Link>
+            <Link to="/dev">
+              <MenuItem>
+                <Computer />
+                &nbsp;&nbsp;개발
+              </MenuItem>
+            </Link>
+            <Link to="/bicycle">
+              <MenuItem>
+                <DirectionsBike />
+                &nbsp;&nbsp;자전거
+              </MenuItem>
+            </Link>
+            <Link to="/game">
+              <MenuItem>
+                <Gamepad />
+                &nbsp;&nbsp;게임
+              </MenuItem>
+            </Link>
             <Divider />
-            <a href="https://github.com/jellive" target="_blank"><MenuItem><Storage />&nbsp;&nbsp;Github</MenuItem></a>
+            <a href="https://github.com/jellive" target="_blank">
+              <MenuItem>
+                <Storage />
+                &nbsp;&nbsp;Github
+              </MenuItem>
+            </a>
           </div>
         </Drawer>
         <div
