@@ -23,7 +23,7 @@
     "gatsby-transformer-sharp": "^3.4.0",
     "lodash": "^4.17.19",
     "material-ui-pagination": "^1.1.6",
-    "prismjs": "^1.21.0",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.6.2",
     "react": "^17.0.2",
     "react-disqus-comments": "^1.2.0",
